@@ -1,10 +1,15 @@
 package com.portes.jwt_test.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Funcionario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String cpf;
@@ -16,8 +21,8 @@ public class Funcionario {
 
     }
 
-    public Funcionario(Long id, String nome, String cpf, String email, String telefone, String cargo) {
-        this.id = id;
+    public Funcionario(String nome, String cpf, String email, String telefone, String cargo) {
+
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
