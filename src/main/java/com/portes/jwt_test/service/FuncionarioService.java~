@@ -16,13 +16,8 @@ public class FuncionarioService {
     private FuncionarioRepository repository;
 
     public List<FuncionarioDTO> findAll() {
-        List<Funcionario> list = repository.findAll();
-        return list.stream().map(Funcionario::toDTO).toList();
-    }
-
-    public FuncionarioDTO findById(Long id) {
-        Funcionario f = repository.findById(id).get();
-        return f.toDTO();
+        repository.findAll();
+        return 
     }
 
 }

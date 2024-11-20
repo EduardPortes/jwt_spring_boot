@@ -1,4 +1,6 @@
-package com.portes.jwt_test.entities;
+package com.portes.jwt_test.models.entities;
+
+import com.portes.jwt_test.models.dto.FuncionarioDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,18 +17,25 @@ public class Funcionario {
     private String cpf;
     private String email;
     private String telefone;
-    private String cargo;
+    private Cargo cargo;
 
     public Funcionario() {
 
     }
 
-    public Funcionario(String nome, String cpf, String email, String telefone, String cargo) {
+    public Funcionario(String nome, String cpf, String email, String telefone, Cargo cargo) {
 
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
+        this.cargo = cargo;
+    }
+
+    public Funcionario(Long id, String nome, Cargo cargo) {
+
+        this.id = id;
+        this.nome = nome;
         this.cargo = cargo;
     }
 
@@ -70,11 +79,11 @@ public class Funcionario {
         this.telefone = telefone;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 
@@ -104,7 +113,23 @@ public class Funcionario {
     }
 
 
-    
+    public FuncionarioDTO toDTO() {
+
+        FuncionarioDTO fDTO = new FuncionarioDTO();
+
+        fDTO.setId(this.id);
+        fDTO.setNome(this.nome);
+        fDTO.setCargo(this.cargo);
+
+        return fDTO;
+    }
+
+    public Funcionario fromDTO(FuncionarioDTO fDTO) {
+
+        Funcionario f = new Funcionario(fDTO.getId(), fDTO.getNome(), fDTO.getCargo());
+
+        return f;
+    }
 
     
 
